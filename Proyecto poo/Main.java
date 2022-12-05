@@ -65,6 +65,32 @@ class Main {
           System.out.println("///MOSTRANDO INFORMACION DE VISITANTES///");
           System.out.println(v1.ToString());
           //Agregar
+          int add_vis;
+          System.out.print("Desea agregar Visitantes? (1=Si)");
+          add_vis=sc.nextInt();
+          if (add_vis == 1){ 
+            System.out.print("Cuantos visitantes desea ingresar?: ");
+            int num_vis = sc.nextInt();
+            for (int i=1;i<num_vis+1;i++){
+              System.out.print("Digite la cedula: ");
+              int ced_vis=sc.nextInt();
+              System.out.print("Digite el nombre: ");
+              sc.nextLine();
+              String nomb_vis=sc.nextLine();
+              System.out.print("Digite el email: ");
+              String emai_vis=sc.nextLine();
+              System.out.print("Digite el telefono: ");
+              int tel_vis=sc.nextInt();
+              System.out.print("Digite si tiene sancion(true/false): ");
+              boolean san_vis=sc.nextBoolean();
+              System.out.print("Digite la empresa: ");
+              sc.nextLine();
+              String emp_vis=sc.nextLine();
+              Visitante r = new Visitante(nomb_vis,ced_vis,emai_vis,tel_vis,emp_vis,san_vis);
+              vis.add(r);
+              System.out.println(vis.size());
+            }
+          }
           //Editar
           break;
         case 4:
