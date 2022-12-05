@@ -241,10 +241,10 @@ class Main {
             }
           }
               //Editar
-              System.out.print("Desea editar Residentes?(1=Si): ");
+              System.out.print("Desea editar Visitantes?(1=Si): ");
           int edt_vis=sc.nextInt();
           if (edt_vis == 1){
-            System.out.print("Cuantos residentes desea editar?: ");
+            System.out.print("Cuantos visitantes desea editar?: ");
             int nu_vis = sc.nextInt();
             for (int j=1;j<nu_vis+1;j++){
               System.out.print("Ingrese la cedula: ");
