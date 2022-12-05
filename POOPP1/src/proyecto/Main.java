@@ -249,31 +249,29 @@ class Main {
             for (int j=1;j<nu_vis+1;j++){
               System.out.print("Ingrese la cedula: ");
               int busqueda = sc.nextInt();
-              for (int k =0;k<vis.size();k++)
+              for (int k =0;k<vis.size();k++){
                 if (busqueda == vis.get(k).getCedula()){
-                  System.out.println("Ingrese el nuevo nombre del Visitante:");
-                   sc.nextLine();
+                  System.out.print("Ingrese el nuevo nombre del Visitante: ");
+                  sc.nextLine();
                   String nom_vis = sc.nextLine();
                   vis.get(k).SetNombre(nom_vis);
-                  System.out.print("Ingrese el nuevo email del Visitante:");
+                  System.out.print("Ingrese el nuevo email del Visitante: ");
                   String ema_vis = sc.nextLine();
                   vis.get(k).SetEmail(ema_vis);
-                  System.out.print("Ingrese el nuevo telefono del Visitante:");
+                  System.out.print("Ingrese el nuevo telefono del Visitante: ");
                   int telf_vis = sc.nextInt();
                   vis.get(k).SetTelefono(telf_vis);
-                  System.out.print("Ingrese el nuevo estado del Visitante:");
-                  boolean es_vis = sc.nextBoolean();
-                  vis.get(k).SetEstado(es_vis);
-                  System.out.print("Ingrese la nueva empresa del Visitante:");
-                  String em_vis = sc.nextLine();
-                  vis.get(k).SetEmpresa(em_vis);
-                  System.out.print("Ingrese si tiene sancion :");
+                  System.out.print("Ingrese si tiene sancion: ");
                   boolean sa_vis = sc.nextBoolean();
                   vis.get(k).SetSancion(sa_vis);
-              }
-                else{
+                  System.out.print("Ingrese la empresa del Visitante: ");
+                  sc.nextLine();
+                  String em_vis = sc.nextLine();
+                  vis.get(k).SetEmail(em_vis); 
+                  } else {
                   System.out.println("No se encontro a la persona");
                 }
+              }
             }
           }
               break;
