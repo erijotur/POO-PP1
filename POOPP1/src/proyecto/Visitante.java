@@ -8,20 +8,22 @@ public class Visitante extends Persona{
     super(nombre,cedula,email,telefono);
     this.empresa=empresa;
     this.sancion=sancion;
-    
-  
-    
+  }
+   //Getters
+  public String GetEmpresa(){
+    return empresa;
+  }
+  public boolean GetSancion(){
+    return sancion;
+  }
+  //Setters
+  public void SetEmpresa(String empresa){
+    this.empresa=empresa;
+  }
+  public void SetSancion(boolean sancion){
+    this.sancion=sancion;
   }
   //ToString()
-
-    public String getEmpresa() {
-        return empresa;
-    }
-
-    public boolean isSancion() {
-        return sancion;
-    }
-
     @Override
     public String toString() {
         return "Visitante{" + "empresa=" + empresa + ", sancion=" + sancion + '}';
