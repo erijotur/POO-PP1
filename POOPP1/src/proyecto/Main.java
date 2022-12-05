@@ -58,6 +58,35 @@ class Main {
               System.out.println("--------------------////////////FIN DE INFORMACION/////////////--------------------");
               System.out.println();
               //Editar
+              System.out.print("Desea editar la Urbanizacion?(1=Si): ");
+              int edt_urb=sc.nextInt();
+              if (edt_urb == 1){
+                System.out.print("Cuantas Urbanizaciones desea editar?: ");
+                int nu_urb = sc.nextInt();
+                for (int j=1;j<nu_urb+1;j++){
+                 System.out.print("Ingrese la etapa: ");
+                 int localizar = sc.nextInt();
+                   for (int k =0;k<urb.size();k++){
+                      if (localizar == urb.get(k).getEtapa()){
+                        System.out.print("Ingrese el nuevo nombre de la Urbanizacion: ");
+                        sc.nextLine();
+                        String no_urb = sc.nextLine();
+                        urb.get(k).SetNom_urb(no_urb);
+                        System.out.print("Ingrese el email de la Urbanizacion: ");
+                        String ema_urb = sc.nextLine();
+                        urb.get(k).SetEmailU(ema_urb);
+                        System.out.print("Ingrese la nueva direccion de la Urbanizacion: ");
+                        String direc_urb = sc.nextLine();
+                        urb.get(k).SetDireccionU(direc_urb);
+                        System.out.print("Ingrese la nueva constructora: ");
+                        String const_urb = sc.nextLine();
+                        urb.get(k).SetConstructora(const_urb);
+                      } else {
+                  System.out.println("No se encontro a la Urbanizacion "+k);
+                }
+              }
+            }
+          }
               break;
             
             //Residentes
