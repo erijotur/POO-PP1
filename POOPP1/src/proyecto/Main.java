@@ -269,7 +269,7 @@ class Main {
                   String em_vis = sc.nextLine();
                   vis.get(k).SetEmail(em_vis); 
                   } else {
-                  System.out.println("No se encontro a la persona en"+k);
+                  System.out.println("No se encontro a la persona en posicion: "+k);
                 }
               }
             }
