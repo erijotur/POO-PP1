@@ -26,9 +26,6 @@ public class Persona{
   public String getNombre(){
     return nombre;
   }
-  public int getCedula(){
-    return cedula;
-  }
   public String getEmail(){
     return email;
   }
@@ -53,7 +50,12 @@ public class Persona{
    } 
    public void SetEstado(boolean estado){
      this.estado=estado;
+     
    }
+   
+   public int getCedula() {
+        return this.cedula;
+    }
   //To String()
 
     @Override

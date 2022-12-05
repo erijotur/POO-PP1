@@ -26,7 +26,9 @@ public class Visitante extends Persona{
   //ToString()
     @Override
     public String toString() {
-        return "Visitante{" + "empresa=" + empresa + ", sancion=" + sancion + '}';
+        return "\nVisitante{ Nombre= "+ super.nombre + ", Cedula= "+ super.cedula + ", Email= "+ super.email + 
+                           "\n, Telefono= " + super.telefono + ", Estado= "+ super.estado + " empresa=" + empresa + 
+                            "\n, sancion=" + sancion + "}\n";
     }
   
 }

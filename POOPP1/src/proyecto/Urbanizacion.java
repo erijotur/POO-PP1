@@ -21,9 +21,31 @@ public class Urbanizacion{
     return nom_urb;
   }
   //Setters
-  public void SetNom_urb(String nom_urb){
-    this.nom_urb=nom_urb;
-  }
+
+    public void setNom_urb(String nom_urb) {
+        this.nom_urb = nom_urb;
+    }
+
+    public void setEtapa(int etapa) {
+        this.etapa = etapa;
+    }
+
+    public void setEmail_urb(String email_urb) {
+        this.email_urb = email_urb;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setConstructora(String constructora) {
+        this.constructora = constructora;
+    }
+
+    public void setAdmin(TipoEmpleado admin) {
+        this.admin = admin;
+    }
+  
 
     @Override
     public String toString() {

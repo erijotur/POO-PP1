@@ -20,7 +20,10 @@ public class Empleado extends Persona{
 
     @Override
     public String toString() {
-        return "Empleado{" + "trabajo=" + trabajo + ", tipo=" + tipo + ", inicio=" + inicio + ", fin=" + fin + '}';
+        return "\nEmpleado{ Nombre= "+ super.nombre + ", Cedula= "+ super.cedula + ", Email= "+ super.email + 
+                "\n, Telefono= "+ super.telefono + ", Estado= "+ super.estado+ "trabajo= " + trabajo + ", tipo= " + tipo + 
+                "\n, inicio= " + inicio + ", fin= " + fin + '}';
     }
+  
   
 }

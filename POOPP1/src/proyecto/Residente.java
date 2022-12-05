@@ -67,8 +67,12 @@ public class Residente extends Persona{
     public int getNumero() {
         return numero;
     }
-    
-    
-    
-  
+
+    public int getMz() {
+        return mz;
+    }
+
+    public int getVilla() {
+        return villa;
+    }   
 }

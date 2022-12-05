@@ -24,13 +24,35 @@ class Main {
         Calendar inicio= new GregorianCalendar(2022,Calendar.JANUARY,15);
         Calendar fin=new GregorianCalendar(2022,Calendar.MARCH,12);
         
-        Urbanizacion urb1 = new   Urbanizacion("Chespirito",2,"pepe@hotmail.com","Enrique Segoviano","Const",TipoEmpleado.administrador);
-        Visitante v1 = new Visitante("Alfredo",321,"alfredo@gmail.com",198,"KFC",false);
-        Empleado emp1= new Empleado("Carlos",213,"carlos@gmail.com",143,true,"Seguridad",TipoEmpleado.guardia,inicio,fin);
-          vis.add(v1);
-          emp.add(emp1);
-          urb.add(urb1);
-
+        
+        //Inicializamos los datos requeridos por el metodo iniciarSistema(), que nos pide una cantidad de usuarios
+        
+        //Datos de la Urbanizacion
+        Urbanizacion urb1 = new Urbanizacion("Chespirito",2,"pepe@hotmail.com","Enrique Segoviano","Const",TipoEmpleado.administrador);
+        urb.add(urb1);
+        
+        //Primer Residente
+        Residente residente1 = new Residente("Cecilia", 999, "cecilia@gmail.com", 111, true, 1, 1, 1, urb1.getNom_urb());
+        res.add(residente1);
+        
+        //Primeros Visitantes
+        Visitante v1 = new Visitante("Alfredo",321,"alfredo@gmail.com",198,"Ninguna",false);
+        Visitante v2 = new Visitante("Carlos",456,"carlos@gmail.com",911,"MCdonalds",false);
+        vis.add(v1);
+        vis.add(v2);
+        
+        //2 Guardias
+        Empleado emp1= new Empleado("Mike",852,"mike@gmail.com",777,true,"Seguridad",TipoEmpleado.guardia,inicio,fin);
+        Empleado emp2= new Empleado("Joana",753,"joana@gmail.com",666,true,"Seguridad",TipoEmpleado.guardia,inicio,fin);
+        emp.add(emp1);
+        emp.add(emp2);
+        
+        //Permisos de entrada asociados al primer residente
+        Entrada ent1 = new Entrada(999, 321, 31, 12, 2022, 22, 0, 60);
+        Entrada ent2 = new Entrada(999, 456, 5, 11, 2022, 13, 30, 5);
+        perm.add(ent1);
+        perm.add(ent2);
+        
         //Bucle principal
         Scanner sc = new Scanner(System.in);
         boolean salir = false;
@@ -40,7 +62,7 @@ class Main {
           //Mensaje de Ingreso al Menu Principal
           System.out.println("--------------------//////////////MENU PRINCIPAL///////////////--------------------");
           System.out.println();
-          System.out.print("1. Urbanización" +"\n2. Residentes" +"\n3. Visitantes"+"\n4. Colaboradores de la Urbanización"+
+          System.out.print("1. Urbanización" +"\n2. Residentes" +"\n3. Visitantes"+"\n4. Colaboradores de la Urbanizacion"+
                             "\n5. Permisos de Entrada"+"\n6. Revisión de Entrada"+"\n7. Reportes" +"\n8. Salir");
           System.out.println("A que opcion deseas ingresar: ");
           opcion=sc.nextInt();
@@ -49,7 +71,7 @@ class Main {
               
             //Urbanizacion
             case 1:
-              //Mensaje de Ingreso a la Opcion 1
+              //Mensaje de Ingreso a la Opcion 1 Datos y Edicion de urbanizacion
               System.out.println("Esta es la opcion 1");
               System.out.println("--------------------///MOSTRANDO INFORMACION DE URBANIZACION///--------------------");
               System.out.println();
@@ -57,45 +79,60 @@ class Main {
               System.out.println();
               System.out.println("--------------------////////////FIN DE INFORMACION/////////////--------------------");
               System.out.println();
-              //Editar
-              System.out.print("Desea editar la Urbanizacion?(1=Si): ");
-              int edt_urb=sc.nextInt();
-              if (edt_urb == 1){
-                System.out.print("Cuantas Urbanizaciones desea editar?: ");
-                int nu_urb = sc.nextInt();
-                for (int j=1;j<nu_urb+1;j++){
-                 System.out.print("Ingrese la etapa: ");
-                 int localizar = sc.nextInt();
-                   for (int k =0;k<urb.size();k++){
-                      if (localizar == urb.get(k).getEtapa()){
-                        System.out.print("Ingrese el nuevo nombre de la Urbanizacion: ");
-                        sc.nextLine();
-                        String no_urb = sc.nextLine();
-                        urb.get(k).SetNom_urb(no_urb);
-                        System.out.print("Ingrese el email de la Urbanizacion: ");
-                        String ema_urb = sc.nextLine();
-                        urb.get(k).SetEmailU(ema_urb);
-                        System.out.print("Ingrese la nueva direccion de la Urbanizacion: ");
-                        String direc_urb = sc.nextLine();
-                        urb.get(k).SetDireccionU(direc_urb);
-                        System.out.print("Ingrese la nueva constructora: ");
-                        String const_urb = sc.nextLine();
-                        urb.get(k).SetConstructora(const_urb);
-                      } else {
-                  System.out.println("No se encontro a la Urbanizacion "+k);
+              //Editar Urbanizacion
+              System.out.println("--------------------////Editar La Urbanizacion////--------------------");
+              System.out.println();
+              Scanner eurb = new Scanner(System.in);
+              System.out.println("Que variable de la Urbanizacion desea editar? \n 1.nombre \n 2.etapa \n 3.email \n 4.direccion \n 5.constructora "
+                                   +"\n 6.Cancelar \n SU OPCION:");
+              int opcion12=eurb.nextInt();
+              switch(opcion12){
+                  
+                  case 1:
+                      Scanner eurb11 = new Scanner(System.in);
+                      System.out.println("Ingrese el nuevo nombre de la Urbanizacion: ");
+                      String nnombu = eurb11.nextLine();
+                      urb1.setNom_urb(nnombu);
+                      break;
+                  case 2:
+                      Scanner eurb12= new Scanner(System.in);
+                      System.out.println("Ingrese la nueva etapa de la Urbanizacion: ");
+                      int netap = eurb12.nextInt();
+                      urb1.setEtapa(netap);
+                      break;
+                  case 3:
+                      Scanner eurb13= new Scanner(System.in);
+                      System.out.println("Ingrese el nuevo Email de la Urbanizacion: ");
+                      String nemu = eurb13.nextLine();
+                      urb1.setEmail_urb(nemu);
+                     break;
+                  case 4:
+                      Scanner eurb14= new Scanner(System.in);
+                      System.out.println("Ingrese la nueva drieccion de la Urbanizacion: ");
+                      String direu = eurb14.nextLine();
+                      urb1.setDireccion(direu);
+                      break;
+                  case 5:
+                      Scanner eurb15= new Scanner(System.in);
+                      System.out.println("Ingrese la nueva constructora de la Urbanizacion: ");
+                      String consu = eurb15.nextLine();
+                      urb1.setConstructora(consu);
+                      break;
+                  case 6:
+                      System.out.println("Cancelando la edicion de de la Urbanizacion");
+                      break;
+                  default:
+                      System.out.println("Las opciones son entre 1 y 6");
                 }
-              }
-            }
-          }
               break;
             
-            //Residentes
+            //Ingreso a Residentes
             case 2:
               Scanner pc2 = new Scanner(System.in);
               int opcion2;
               boolean exit2=false;
               while(!exit2){
-                  //Mensaje de Ingreso a la Opcion 2
+                  //Mensaje de Ingreso a la Opcion de Residentes
                   System.out.println();
                   System.out.println("Esta es la opcion 2");
                   System.out.println();
@@ -108,7 +145,7 @@ class Main {
                   opcion2 = pc2.nextInt();
                   switch(opcion2){
                       
-                      //Agregar
+                      //Agregar Residente
                       case 1:
                           //Mensaje de Ingreso para agregar nuevo Residente
                           System.out.println("--------------------////Agregar Nuevo Residente////--------------------");
@@ -237,19 +274,20 @@ class Main {
               }
               break;
               
-            //Visitantes
+            //Ingreso a Visitantes
             case 3:
               System.out.println("Esta es la opcion 3");
-              System.out.println("///MOSTRANDO INFORMACION DE VISITANTES///");
-              System.out.println(v1);
-              //Agregar
+              System.out.println("----------------///////MOSTRANDO INFORMACION DE VISITANTES///////-------------------");
+              System.out.println(vis);
+              System.out.println("--------------------////////////FIN DE INFORMACION/////////////--------------------");
+              //Agregar Visitantes
               int add_vis;
-          System.out.print("Desea agregar Visitantes? (1=Si): ");
-          add_vis=sc.nextInt();
-          if (add_vis == 1){ 
-            System.out.print("Cuantos visitantes desea ingresar?: ");
-            int num_vis = sc.nextInt();
-            for (int i=1;i<num_vis+1;i++){
+              System.out.print("Desea agregar Visitantes? (1=Si): ");
+              add_vis=sc.nextInt();
+              if (add_vis == 1){ 
+              System.out.print("Cuantos visitantes desea ingresar?: ");
+              int num_vis = sc.nextInt();
+              for (int i=1;i<num_vis+1;i++){
               System.out.print("Digite la cedula: ");
               int ced_vis=sc.nextInt();
               System.out.print("Digite el nombre: ");
@@ -269,34 +307,34 @@ class Main {
               System.out.println(vis.size());
             }
           }
-              //Editar
-              System.out.print("Desea editar Visitantes?(1=Si): ");
-          int edt_vis=sc.nextInt();
-          if (edt_vis == 1){
-            System.out.print("Cuantos visitantes desea editar?: ");
-            int nu_vis = sc.nextInt();
-            for (int j=1;j<nu_vis+1;j++){
-              System.out.print("Ingrese la cedula: ");
-              int busqueda = sc.nextInt();
-              for (int k =0;k<vis.size();k++){
-                if (busqueda == vis.get(k).getCedula()){
-                  System.out.print("Ingrese el nuevo nombre del Visitante: ");
-                  sc.nextLine();
-                  String nom_vis = sc.nextLine();
-                  vis.get(k).SetNombre(nom_vis);
-                  System.out.print("Ingrese el nuevo email del Visitante: ");
-                  String ema_vis = sc.nextLine();
-                  vis.get(k).SetEmail(ema_vis);
-                  System.out.print("Ingrese el nuevo telefono del Visitante: ");
-                  int telf_vis = sc.nextInt();
-                  vis.get(k).SetTelefono(telf_vis);
-                  System.out.print("Ingrese si tiene sancion: ");
-                  boolean sa_vis = sc.nextBoolean();
-                  vis.get(k).SetSancion(sa_vis);
-                  System.out.print("Ingrese la empresa del Visitante: ");
-                  sc.nextLine();
-                  String em_vis = sc.nextLine();
-                  vis.get(k).SetEmail(em_vis); 
+              //Editar Visitantes
+              System.out.print("Desea editar Residentes?(1=Si): ");
+              int edt_vis=sc.nextInt();
+              if (edt_vis == 1){
+                System.out.print("Cuantos residentes desea editar?: ");
+                int nu_vis = sc.nextInt();
+                for (int j=1;j<nu_vis+1;j++){
+                    System.out.print("Ingrese la cedula: ");
+                    int busqueda = sc.nextInt();
+                    for (int k =0;k<vis.size();k++){
+                        if (busqueda == vis.get(k).getCedula()){
+                        System.out.print("Ingrese el nuevo nombre del Visitante: ");
+                        sc.nextLine();
+                        String nom_vis = sc.nextLine();
+                        vis.get(k).SetNombre(nom_vis);
+                        System.out.print("Ingrese el nuevo email del Visitante: ");
+                        String ema_vis = sc.nextLine();
+                        vis.get(k).SetEmail(ema_vis);
+                        System.out.print("Ingrese el nuevo telefono del Visitante: ");
+                        int telf_vis = sc.nextInt();
+                        vis.get(k).SetTelefono(telf_vis);
+                        System.out.print("Ingrese si tiene sancion: ");
+                        boolean sa_vis = sc.nextBoolean();
+                        vis.get(k).SetSancion(sa_vis);
+                        System.out.print("Ingrese la empresa del Visitante: ");
+                        sc.nextLine();
+                        String em_vis = sc.nextLine();
+                        vis.get(k).SetEmail(em_vis); 
                   } else {
                   System.out.println("No se encontro a la persona en posicion: "+k);
                 }
@@ -308,37 +346,155 @@ class Main {
             //Colaboradores de la Urbanización
             case 4:
               System.out.println("Esta es la opcion 4");
-              System.out.println("///MOSTRANDO INFORMACION DE EMPLEADOS///");
-              System.out.println(emp1);
+              System.out.println("--------------///////////MOSTRANDO INFORMACION DE EMPLEADOS//////////--------------");
+              System.out.println(emp);
+              System.out.println("--------------------////////////FIN DE INFORMACION/////////////--------------------");
+              System.out.println("");
               break;
               
             //Permisos de Entrada
             case 5:
-              System.out.println("Esta es la opcion 5");
-              System.out.println("--------------------////Permisos de Entrada////--------------------");
-              System.out.println();
-              Scanner perm = new Scanner(System.in);
-              System.out.println("1.Crear Permiso de Entrada \n2.Eliminar Permiso de Entrada \n3.Consultar Permisos por Manzana y Villa \n4.Atras");
-              System.out.println("");
-              System.out.println("Ingrese la Accion que desea Realizar: ");
-              int opc5 = perm.nextInt();
-              switch(opc5){
-                  case 1:
-                      
+                //Mensajes de Ingreo a PErmisos de Entrada y Logica
+              Scanner perm5 = new Scanner(System.in);
+              boolean exit5 = false;
+              int opcion5;
+              while(!exit5){
+                System.out.println("Esta es la opcion 5");
+                System.out.println("--------------------////Permisos de Entrada Dsiponibles////--------------------");
+                System.out.println();
+                System.out.println(perm);
+                System.out.println();
+                System.out.println("--------------------////////////FIN DE INFORMACION/////////////--------------------");
+                System.out.println();
+                System.out.println("1.Crear Permiso de Entrada \n2.Eliminar Permiso de Entrada \n3.Consultar Permisos por Manzana y Villa \n4.Atras");
+                System.out.println("");
+                System.out.println("Ingrese la Accion que desea Realizar: ");
+                opcion5 = perm5.nextInt();
+                switch(opcion5){
+                    // Crear permisos de entrada
+                    case 1:
+                        System.out.println();
+                        System.out.println("--------------------////Crear Permisos de Entrada////--------------------");
+                        System.out.println();
+                        System.out.println("Ingrese Los Valores Requeridos con representacions de fecha numericas");
+                        System.out.println();
 
-                      break;
-                  case 2:
-                      
-                      break;
-                  case 3:
-                      
-                      break;
-                  case 4:
-                      System.out.println("Cancelando la Creacion de Permisos");
-                      break;
-                  default:
-                      System.out.println("Las opciones son entre 1 y 4");
-                      
+                        Scanner perment = new Scanner(System.in);
+                        
+                        System.out.println("Identificacion del residente que crea el permiso de entrada: ");
+                        int resemisor = perment.nextInt();
+                        
+                        System.out.println("Identificacion del visitante: ");
+                        int visitcp = perment.nextInt();
+                        
+                        System.out.println("Ingrese el dia en el que el visitante llega: ");
+                        int diaIngreso = perment.nextInt();
+
+                        System.out.println("Ingrese el mes en el que el visitante llega: ");
+                        int mesIngreso = perment.nextInt();
+
+                        System.out.println("Ingrese el anio en el que el visitante llega: ");
+                        int anioIngreso = perment.nextInt();
+
+                        System.out.println("Ingrese la hora en el que el visitante llega: ");
+                        int horaIngreso = perment.nextInt();
+
+                        System.out.println("Ingrese los minutos en el que el visitante llega: ");
+                        int minutoIngreso = perment.nextInt();
+
+                        System.out.println("Ingrese el tiempo de estadia en minutos del visitante : ");
+                        int duracionVisita = perment.nextInt();
+                        
+                        perm.add(new Entrada(resemisor,visitcp,diaIngreso,mesIngreso,anioIngreso,horaIngreso,minutoIngreso,duracionVisita));
+                        break;
+                        
+                    //Eliminar Permisos de entrada validando el numero de cedula del residente que lo creo
+                    case 2:
+                        Scanner permisos = new Scanner(System.in);
+                        System.out.println("Ingrese el numero de cedula del Residente del que quiere consultar y modificar sus permisos: ");
+                        int ced = permisos.nextInt();
+                        for(Residente residente:res){
+                            if (residente.cedula==ced) {
+                                for(Entrada permiso :perm){
+                                    if (permiso.getResemisor()==ced) {
+                                        System.out.println("----Permiso emitido por el Residente Consultado----");
+                                        System.out.println("");
+                                        System.out.println(permiso);
+                                        System.out.println("");
+                                        System.out.println("---------------------------------------------------");
+                                        Scanner numper = new Scanner(System.in);
+                                        System.out.println("Desea eliminar este permiso? (1: SI, 2: NO) ");
+                                        int x = numper.nextInt();
+                                        switch(x){
+                                        case 1:
+                                            permiso.setTipoPermiso(Permiso.inactivo);
+                                            break;
+                                        case 2:
+                                            System.out.println("--Pasando al Siguiente Permiso--");
+                                            break;
+                                        default:
+                                            System.out.println("Las opciones son entre 1 y 2");
+                                        }
+                                    }
+                                    else
+                                        System.out.println("No hay permisos para el Residente ingresado");
+                                }
+                                
+                            }
+                            else
+                                System.out.println("No hay ningun residente registrado con ese numero de cedula");
+                        }
+
+                        break;
+                    //Busqueda de permisos de entrada con los parametros de Manzana y Villa
+                    case 3:
+                        Scanner cmzvll = new Scanner(System.in);
+
+                        System.out.println("Ingrese la Manzana del residente: ");
+                        int consulmzv = cmzvll.nextInt();
+
+                        System.out.println("Ingrese la Villa del residente: ");
+                        int consulvll = cmzvll.nextInt();
+                        
+                        for(Residente residente:res){
+                            if (residente.getMz()==consulmzv && residente.getVilla()==consulvll){
+                                int cedulaAsociada = residente.getCedula();
+                                for(Entrada permiso :perm){
+                                    if (permiso.getResemisor()==cedulaAsociada) {
+                                        System.out.println("----Permiso emitido por el Residente Consultado por Manzana: "+consulmzv+ " y Villa: "+consulvll+"----");
+                                        System.out.println("");
+                                        System.out.println(permiso);
+                                        System.out.println("");
+                                        System.out.println("-----------------------------------------------------------------------");
+                                        Scanner numper = new Scanner(System.in);
+                                        System.out.println("Continuar mostrando permisos encontrados? (1: SI, 2: NO) ");
+                                        int x = numper.nextInt();
+                                        switch(x){
+                                        case 1:
+                                            System.out.println("--Pasando al Siguiente Permiso--");
+                                            break;
+                                        case 2:
+                                            break;
+                                        default:
+                                            System.out.println("Las opciones son entre 1 y 2");
+                                        }
+                                    }
+                                    else
+                                        System.out.println("----ATENCION!: No hay permisos para los datos del Residente ingresado----");
+                                }
+                                
+                            }
+                            else
+                                System.out.println("---- ATENCION! : No hay ningun residente registrado con los Datos Presentados----");
+                        }
+                        break;
+                    case 4:
+                        System.out.println("Cancelando la Creacion de Permisos");
+                        exit5=true;
+                        break;
+                    default:
+                        System.out.println("Las opciones son entre 1 y 4");
+                }                   
               }
               break;
               
@@ -351,7 +507,27 @@ class Main {
             //Reportes
             case 7:
               System.out.println("Esta es la opcion 7");
-              System.out.println(emp.get(0));
+              Scanner reporte = new Scanner(System.in);
+              System.out.println("Ingrese el numero de cedula del Residente del que quiere realizar la consulta: ");
+              int cedRes = reporte.nextInt();
+              for(Residente residente:res){
+                  if (residente.cedula==cedRes) {
+                      for(Entrada permiso :perm){
+                          if (permiso.getResemisor()==cedRes) {
+                              System.out.println("-----////Permiso emitido por el Residente Consultado////-----");
+                              System.out.println("");
+                              System.out.println(permiso);
+                              System.out.println("");
+                              System.out.println("-------------------------------------------------------------");
+                          }
+                          else
+                              System.out.println("No hay permisos para el Residente ingresado");
+                      }
+                      
+                  }
+                  else
+                      System.out.println("No hay ningun residente registrado con ese numero de cedula");
+                        }
               break;
               
             //Salir
