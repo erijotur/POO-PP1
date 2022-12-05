@@ -214,9 +214,67 @@ class Main {
               System.out.println("///MOSTRANDO INFORMACION DE VISITANTES///");
               System.out.println(v1);
               //Agregar
-              
+              int add_vis;
+          System.out.print("Desea agregar Visitantes? (1=Si)");
+          add_vis=sc.nextInt();
+          if (add_vis == 1){ 
+            System.out.print("Cuantos visitantes desea ingresar?: ");
+            int num_vis = sc.nextInt();
+            for (int i=1;i<num_vis+1;i++){
+              System.out.print("Digite la cedula: ");
+              int ced_vis=sc.nextInt();
+              System.out.print("Digite el nombre: ");
+              sc.nextLine();
+              String nomb_vis=sc.nextLine();
+              System.out.print("Digite el email: ");
+              String emai_vis=sc.nextLine();
+              System.out.print("Digite el telefono: ");
+              int tel_vis=sc.nextInt();
+              System.out.print("Digite si tiene sancion(true/false): ");
+              boolean san_vis=sc.nextBoolean();
+              System.out.print("Digite la empresa: ");
+              sc.nextLine();
+              String emp_vis=sc.nextLine();
+              Visitante r = new Visitante(nomb_vis,ced_vis,emai_vis,tel_vis,emp_vis,san_vis);
+              vis.add(r);
+              System.out.println(vis.size());
+            }
+          }
               //Editar
-              
+              System.out.print("Desea editar Residentes?(1=Si): ");
+          int edt_vis=sc.nextInt();
+          if (edt_vis == 1){
+            System.out.print("Cuantos residentes desea editar?: ");
+            int nu_vis = sc.nextInt();
+            for (int j=1;j<nu_vis+1;j++){
+              System.out.print("Ingrese la cedula: ");
+              int busqueda = sc.nextInt();
+              for (int k =0;k<res.size();k++)
+                if (busqueda == res.get(k).getCedula()){
+                  System.out.println("Ingrese el nuevo nombre del Visitante:");
+                  String nom_vis = sc.nextLine();
+                  res.get(k).SetNombre(nom_vis);
+                  System.out.println("Ingrese el nuevo email del Visitante:");
+                  String ema_vis = sc.nextLine();
+                  res.get(k).SetEmail(ema_vis);
+                  System.out.println("Ingrese el nuevo telefono del Visitante:");
+                  int telf_vis = sc.nextInt();
+                  res.get(k).SetTelefono(telf_vis);
+                  System.out.println("Ingrese el nuevo estado del Visitante:");
+                  boolean es_vis = sc.nextboolean();
+                  res.get(k).SetEstado(es_vis);
+                  System.out.println("Ingrese la nueva empresa del Visitante:");
+                  String em_vis = sc.nextLine();
+                  res.get(k).SetEmpresa(em_vis);
+                  System.out.println("Ingrese si tiene sancion :");
+                  boolean sa_vis = sc.nextboolean();
+                  res.get(k).SetSancion(sa_vis);
+              }
+                else{
+                  System.out.println("No se encontro a la persona");
+                }
+            }
+          }
               break;
               
             //Colaboradores de la Urbanización
