@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Vista2Controller">
+   <children>
+      <Button fx:id="btnAgregar" layoutX="76.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnAgrega" text="Agregar" />
+      <Button fx:id="btnEdita" layoutX="274.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnEdita" text="Editar" />
+      <Button fx:id="btnBorra" layoutX="453.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnBorra" text="Borrar" />
+      <Label layoutX="259.0" layoutY="22.0" prefHeight="43.0" prefWidth="116.0" text="RESIDENTES" />
+      <TableView fx:id="tblRes" layoutY="88.0" prefHeight="203.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="nombre" prefWidth="72.0" text="nombre" />
+            <TableColumn fx:id="cedula" prefWidth="49.0" text="cedula" />
+            <TableColumn fx:id="email" prefWidth="89.0" text="email" />
+            <TableColumn fx:id="telefono" prefWidth="38.0" text="telefono" />
+            <TableColumn fx:id="estado" prefWidth="59.0" text="estado" />
+          <TableColumn fx:id="mz" prefWidth="37.0" text="mz" />
+            <TableColumn fx:id="villa" prefWidth="39.0" text="villa" />
+            <TableColumn fx:id="cant_perso" prefWidth="36.0" text="cant_perso" />
+            <TableColumn fx:id="urbanizacion" prefWidth="179.0" text="urbanizacion" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
